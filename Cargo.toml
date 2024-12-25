@@ -1,0 +1,24 @@
+[package]
+name = "rp_usb_power_switch"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cortex-m = "0.7.7"
+cortex-m-rt = "0.7.5"
+critical-section = "1.2.0"
+defmt = "0.3.10"
+defmt-rtt = "0.4.1"
+embassy-embedded-hal = { path = "../embassy/embassy-embedded-hal", features = ["defmt"] }
+embassy-executor = { path = "../embassy/embassy-executor", features = ["task-arena-size-98304", "arch-cortex-m", "executor-thread", "executor-interrupt", "defmt"] }
+embassy-futures = { path = "../embassy/embassy-futures", features = ["defmt"] }
+embassy-rp = { path = "../embassy/embassy-rp", features = ["defmt", "time-driver", "critical-section-impl", "rp2040"] }
+embassy-sync = { path = "../embassy/embassy-sync", features = ["defmt"] }
+embassy-time = { path = "../embassy/embassy-time", features = ["defmt"] }
+embassy-usb = { path = "../embassy/embassy-usb", features = ["defmt"] }
+panic-probe = { version = "0.3.2", features = ["print-defmt"] }
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "z"
